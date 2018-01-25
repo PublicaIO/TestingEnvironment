@@ -2,6 +2,12 @@
 
 This container will be used to setup RPC server and this RPC server will be used to run tests.
 
+#### Start up docker and launch containers
+*All following commands will be run from the launched container*
+```
+$ docker-compose up -d
+```
+
 #### Init a private node using provided genesis.json file
 ```
 geth --datadir ./data/main init genesis.json
