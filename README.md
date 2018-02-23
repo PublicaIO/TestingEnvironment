@@ -8,6 +8,11 @@ This container will be used to setup RPC server and this RPC server will be used
 $ docker-compose up -d
 ```
 
+#### Connect to created container with 
+```
+$ docker exec -it <container id> bash
+```
+
 #### Init a private node using provided genesis.json file
 ```
 geth --datadir ./data/main init genesis.json
