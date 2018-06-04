@@ -2,36 +2,38 @@
 
 This container will be used to setup RPC server and this RPC server will be used to run tests.
 
+### Setup
 #### Start up docker and launch containers
-*All following commands will be run from the launched container*
 ```
 $ docker-compose up -d
 ```
 
-#### Connect to created container with 
+#### Connect to created container with
 ```
 $ docker exec -it <container id> bash
 ```
+*All following commands will be run from the launched container*
+
+### Start your node
+There are two ways of doing that now:
+- Init private node using provided genesis.json file
+- Start Geth with `--dev` flag
 
 #### Init a private node using provided genesis.json file
 ```
-geth --datadir ./data/main init genesis.json
+$ geth --datadir ./data/main init genesis.json
+$ sh ./runrpc-custom.sh
 ```
 
-#### Create accounts for tests
-*Alternatively you can create accounts directly from the geth console. See RPC server step below.*
+#### Start Geth with `--dev` flag
 ```
-geth --datadir ./data/main account new
-```
-
-#### Start RPC server with console
-Here you can provide `--mine` flag, but keep in mind that at least one account on that node should be created.
-```
-geth --rpc --rpcapi="db,eth,net,web3,personal,web3" --rpccorsdomain "http://localhost" --rpcaddr "0.0.0.0" --datadir ./data/main --port 30301 --nodiscover --networkid 1 console
+$ sh ./runrpc-dev.sh
 ```
 
-In order to create accounts from geth console you can use `helper.js` file
+### Accounts creation
+There will be one account created and pre-funded if you are using dev mode.
+In order to create additional accounts from geth console you can use `helper.js` file
 ```
-loadScript('helper.js');
-addAccount();
+> loadScript('helper.js');
+> addAccount();
 ```
